@@ -1,0 +1,6 @@
+version: 1 # [required]
+root: . # [required] the root folder where the project is
+main_path: /cmd/smallbox/main.go
+build_args: -f ./test/fixtures/crud/assets/simple.txt -n simple -p ./test/fixtures/crud --force
+ignored: box, test
+valid_ext: .go, .tpl, .tmp, .css, .html
