@@ -18,7 +18,7 @@ var tplBoxed *template.Template
 
 func init() {
 
-	content, err := box.Get("/template/box/box.go.tpl")
+	content, err := box.Get("box")
 
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func init() {
 
 	tplBox = template.Must(template.New("box").Parse(string(content)))
 
-	content, err = box.Get("/template/box/boxed.go.tpl")
+	content, err = box.Get("boxed")
 
 	if err != nil {
 		panic(err)
@@ -103,7 +103,7 @@ func boxFile(vf version.FullVersion, fileName string, aliasName string) {
 		Version string
 	}{
 		Content: sFile,
-		Name:    normalizer.KeyName(aliasName),
+		Name:    normalizer.KeyName(fileName, aliasName),
 		Version: fmt.Sprintf("%+v", vf),
 	})
 
