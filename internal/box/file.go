@@ -72,10 +72,6 @@ func boxFile(vf version.FullVersion, fileName string, aliasName string) {
 
 	fmt.Println(aliasName, fileName)
 
-	if aliasName == "" {
-		aliasName = fileName
-	}
-
 	stat, err := os.Stat(fileName)
 
 	if err != nil {

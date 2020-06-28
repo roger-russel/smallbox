@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	bSimple, err := box.Get("/simple")
+	bSimple, err := box.Get("simple")
 
 	if err != nil {
 		panic(err)

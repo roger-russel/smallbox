@@ -3,9 +3,11 @@ package normalizer
 import "github.com/gosimple/slug"
 
 //KeyName normalize a name with the requirements to create a key name
-func KeyName(name string) string {
+func KeyName(name string, alias string) string {
 
 	switch true {
+	case alias != "":
+		name = alias
 	case name[0:2] == "./":
 		name = name[1:]
 	case name[0:1] != "/":
