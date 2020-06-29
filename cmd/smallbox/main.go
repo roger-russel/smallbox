@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/roger-russel/smallbox/internal/cmd"
 	v "github.com/roger-russel/smallbox/internal/version"
@@ -15,7 +15,7 @@ func main() {
 
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println("Some thing went wrong:", r)
+			log.Println("Some thing went wrong:", r)
 		}
 	}()
 

@@ -16,6 +16,8 @@ But there is situations when it is suitable to use like when:
 
 ## How use
 
+smallbox -f ./foo/boo.tpl
+
 ### Limitations
 
 Some limitations found into this project.
@@ -26,7 +28,7 @@ Becouse it will try to create a box folder because of how package works in Golan
 
 ## Images Credits
 
-There is some imagens that I took to test to add images into static files.
+There is some images that I took to test to add images into static files.
 
 <span>Photo by <a href="https://unsplash.com/@filipz?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Filip Zrnzević</a> on <a href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 

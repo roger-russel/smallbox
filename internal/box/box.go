@@ -20,7 +20,7 @@ func Handle(cmd *cobra.Command, args []string, flags flags.Flags, vf version.Ful
 
 	switch true {
 	case flags.File != "":
-		boxFile(vf, flags.File, flags.Name)
+		boxFile(vf, flags.Force, flags.File, flags.Name)
 	}
 
 }

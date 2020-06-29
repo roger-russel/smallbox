@@ -10,3 +10,11 @@ box-templates:
 .PHONY: run-crud
 run-crud:
 	@go run ./test/fixtures/crud/main.go
+
+.PHONY: test
+test:
+	@go test -v ./... -coverpkg="./box/...,./cmd/...,./internal/..." -cover -coverprofile=./coverage.txt -covermode=atomic -gcflags="all=-N -l"
+
+.PHONY: coverage
+coverage: test
+	@go tool cover -html=./coverage.txt -o coverage.html

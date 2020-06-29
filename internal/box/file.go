@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"text/template"
+	"time"
 
 	"github.com/roger-russel/smallbox/box"
 	"github.com/roger-russel/smallbox/internal/normalizer"
@@ -55,8 +56,10 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 
 			err = tplBox.ExecuteTemplate(f, "box", struct {
 				Version string
+				Date    string
 			}{
 				Version: fmt.Sprintf("%+v", vf),
+				Date:    time.Now().Format("2006-01-02 15:04:05.000000"),
 			})
 
 			if err != nil {
@@ -68,9 +71,9 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 	}
 }
 
-func boxFile(vf version.FullVersion, fileName string, aliasName string) {
+func boxFile(vf version.FullVersion, force bool, fileName string, aliasName string) {
 
-	fmt.Println(aliasName, fileName)
+	log.Println("Boxing:", aliasName, fileName)
 
 	stat, err := os.Stat(fileName)
 
@@ -82,6 +85,23 @@ func boxFile(vf version.FullVersion, fileName string, aliasName string) {
 		panic(fmt.Sprintln("A dir is given but smallbox was expecting a file:", fileName))
 	}
 
+	boxedFileName := boxPath + "/" + normalizer.FileName(aliasName)
+
+	stat, err = os.Stat(boxedFileName)
+
+	if err != nil && !os.IsNotExist(err) {
+		panic(err)
+	}
+
+	if stat != nil && stat.IsDir() {
+		panic(fmt.Sprintf("there is a dir where it want to create boxed_file: %v", boxedFileName))
+	}
+
+	if !force {
+		log.Printf("There is a file with same name: \"%v\", to force overwrite add flag --force on command run.", boxedFileName)
+		return // continue to next if there is one
+	}
+
 	fileBytes, err := ioutil.ReadFile(fileName)
 
 	if err != nil {
@@ -90,26 +110,26 @@ func boxFile(vf version.FullVersion, fileName string, aliasName string) {
 
 	sFile := base64.StdEncoding.EncodeToString(fileBytes)
 
-	f, err := os.Create(boxPath + "/" + normalizer.FileName(aliasName))
+	f, err := os.Create(boxedFileName)
 
 	if err != nil {
-		log.Println("create file:", err)
-		return
+		panic(fmt.Sprintf("create file: %v", err))
 	}
 
 	err = tplBoxed.ExecuteTemplate(f, "boxed", struct {
 		Content string
 		Name    string
 		Version string
+		Date    string
 	}{
 		Content: sFile,
 		Name:    normalizer.KeyName(fileName, aliasName),
 		Version: fmt.Sprintf("%+v", vf),
+		Date:    time.Now().Format("2006-01-02 15:04:05.000000"),
 	})
 
 	if err != nil {
 		log.Println("create file:", err)
-		return
 	}
 
 }
