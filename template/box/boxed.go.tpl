@@ -1,5 +1,5 @@
 {{ define "boxed" }}
-/*Package box {{ .Version }} generated at: {{ .Date }}*/
+/*Package box {{ .Version }} genereted this file on {{ .Date }}*/
 package box
 
 func init(){

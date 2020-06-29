@@ -1,5 +1,5 @@
 
-/*Package box {Version: Commit: Date:} */
+/*Package box {Version: Commit: Date:}*/
 package box
 
 import (

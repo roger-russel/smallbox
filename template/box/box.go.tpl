@@ -1,5 +1,5 @@
 {{ define "box" }}
-/*Package box {{ .Version }} generated at: {{ .Date }}*/
+/*Package box {{ .Version }}*/
 package box
 
 import (
