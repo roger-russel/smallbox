@@ -4,7 +4,6 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"text/template"
 	"time"
@@ -63,7 +62,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 			})
 
 			if err != nil {
-				log.Println("create box.go:", err)
+				fmt.Println("create box.go:", err)
 				return
 			}
 
@@ -73,7 +72,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 
 func boxFile(vf version.FullVersion, force bool, fileName string, aliasName string) {
 
-	log.Println("Boxing:", aliasName, fileName)
+	fmt.Println("Boxing:", aliasName, fileName)
 
 	stat, err := os.Stat(fileName)
 
@@ -98,7 +97,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 	}
 
 	if !force {
-		log.Printf("There is a file with same name: \"%v\", to force overwrite add flag --force on command run.", boxedFileName)
+		fmt.Printf("There is a file with same name: \"%v\", to force overwrite add flag --force on command run.", boxedFileName)
 		return // continue to next if there is one
 	}
 
@@ -129,7 +128,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 	})
 
 	if err != nil {
-		log.Println("create file:", err)
+		fmt.Println("create file:", err)
 	}
 
 }

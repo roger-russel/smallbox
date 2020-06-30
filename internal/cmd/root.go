@@ -53,7 +53,6 @@ func Root(vf v.FullVersion) {
 }
 
 func checkDefaultCommand() {
-
 	if len(os.Args) < 2 {
 		os.Args = append([]string{os.Args[0], "--help"}, os.Args[1:]...)
 	}
