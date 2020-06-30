@@ -18,6 +18,7 @@ run-crud:
 
 .PHONY: test
 test:
+	@rm -fr ./cmd/smallbox/box
 	@go test -v ./... -coverpkg="./box/...,./cmd/...,./internal/..." -cover -coverprofile=./coverage.txt -covermode=atomic -gcflags="all=-N -l"
 
 .PHONY: coverage

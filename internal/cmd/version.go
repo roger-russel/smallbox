@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"log"
+	"fmt"
 
 	v "github.com/roger-russel/smallbox/internal/version"
 
@@ -16,7 +16,7 @@ func version(vf v.FullVersion) (versionCmd *cobra.Command) {
 		Short: "Print the version of Smallbox",
 		Long:  `Print the semantical version of Smallbox built`,
 		Run: func(cmd *cobra.Command, args []string) {
-			log.Printf("version: %s\nbuilded at: %s\ncommit hash: %s\n", vf.Version, vf.Date, vf.Commit)
+			fmt.Printf("version: %s\nbuilded at: %s\ncommit hash: %s\n", vf.Version, vf.Date, vf.Commit)
 		},
 	}
 
