@@ -39,3 +39,4 @@ There is some images that I took to test to add images into static files.
 <span>Photo by <a href="https://unsplash.com/@iankeefe?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ian Keefe</a> on <a href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 <span>Photo by <a href="https://unsplash.com/@meric?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Meriç Dağlı</a> on <a href="/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+

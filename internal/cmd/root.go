@@ -44,7 +44,7 @@ func Root(vf v.FullVersion) {
 	)
 
 	flags.Force = *rootCmd.Flags().Bool(
-		"force", true,
+		"force", false,
 		"Force will make smallbox rewrite all files again: --force",
 	)
 
