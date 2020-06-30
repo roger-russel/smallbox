@@ -127,7 +127,11 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 	})
 
 	if err != nil {
+<<<<<<< HEAD
 		panic(fmt.Sprintf("create file: %v", err))
+=======
+		fmt.Println("create file:", err)
+>>>>>>> 02be42ae2ac8fe947ea027213780fbda95cc7dbf
 	}
 
 }
