@@ -62,8 +62,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 			})
 
 			if err != nil {
-				fmt.Println("create box.go:", err)
-				return
+				panic(fmt.Sprintf("create box.go %v", err))
 			}
 
 		}
@@ -128,7 +127,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 	})
 
 	if err != nil {
-		fmt.Println("create file:", err)
+		panic(fmt.Sprintf("create file: %v", err))
 	}
 
 }

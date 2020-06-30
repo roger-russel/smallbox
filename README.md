@@ -1,5 +1,7 @@
 # Small Box
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/9738317709cabed40cc5/maintainability)](https://codeclimate.com/github/roger-russel/smallbox/maintainability) ![download](https://img.shields.io/github/downloads/roger-russel/smallbox/total.svg)
+
 Small Box is a small library to embed static content into Golang Binary.
 
 By generating go files with it content.

@@ -41,7 +41,7 @@ func Test_mainHelp(t *testing.T) {
 			wantOut: "smallbox",
 		},
 		{
-			name: "text control",
+			name: "test control",
 			pre: func() {
 				os.Args = []string{
 					os.Args[0],

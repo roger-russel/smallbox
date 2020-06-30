@@ -24,3 +24,14 @@ test:
 .PHONY: coverage
 coverage: test
 	@go tool cover -html=./coverage.txt -o coverage.html
+
+.PHONY: codeclimate # Must have CODECOV_TOKEN env set
+codeclimate:
+	@cc-test-reporter format-coverage -t gocov -p ${GOPATH} -d
+	@cc-test-reporter upload-coverage
+
+.PHONY: codecov # Must have CODECOV_TOKEN env set
+codecov:
+	@export CODECOV_TOKEN=${CODECOV_TOKEN_SMALLBOX}
+	@curl -s https://codecov.io/bash > /tmp/codecov.sh && chmod +x /tmp/codecov.sh && bash /tmp/codecov.sh
+
