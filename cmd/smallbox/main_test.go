@@ -253,11 +253,12 @@ func Example_mainPath() {
 		"-f",
 		"/some/file.txt",
 		"-p", "/",
+		"-n", "file",
 	}
 
 	main()
 	// output:
-	// Boxing: /some/file.txt
+	// Boxing: /some/file.txt file
 	// Some thing went wrong: some error
 
 }

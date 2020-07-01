@@ -10,6 +10,8 @@ import (
 
 func Test_handleBoxFolder(t *testing.T) {
 
+	boxPathOld := boxPath
+
 	defer monkey.UnpatchAll()
 
 	monkey.Patch(os.MkdirAll, func(path string, perm os.FileMode) (err error) {
@@ -75,4 +77,6 @@ func Test_handleBoxFolder(t *testing.T) {
 			tt.after()
 		})
 	}
+
+	boxPath = boxPathOld
 }

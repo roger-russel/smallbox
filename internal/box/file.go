@@ -86,7 +86,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 	}
 
 	if stat.IsDir() {
-		panic(fmt.Sprintln("A dir is given but smallbox was expecting a file:", fileName))
+		panic(fmt.Sprintf("The file name: %v, is a dir but it was expecting a file", fileName))
 	}
 
 	boxedFileName := boxPath + "/" + normalizer.FileName(aliasName)
