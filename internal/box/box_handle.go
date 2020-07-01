@@ -14,9 +14,9 @@ var boxPath string
 func Handle(cmd *cobra.Command, args []string, flags flags.Flags, vf version.FullVersion) {
 
 	if flags.Path[:len(flags.Path)] == "/" {
-		boxPath += flags.Name
+		boxPath = flags.Path
 	} else {
-		boxPath += "/" + flags.Name
+		boxPath = flags.Path + "/"
 	}
 
 	handleBoxFolder()

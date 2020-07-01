@@ -17,7 +17,10 @@ var tplBox *template.Template
 var tplBoxed *template.Template
 
 func init() {
+	initFile()
+}
 
+func initFile() {
 	content, err := box.Get("box")
 
 	if err != nil {
@@ -33,12 +36,11 @@ func init() {
 	}
 
 	tplBoxed = template.Must(template.New("boxed").Parse(string(content)))
-
 }
 
 func createBoxManagerFile(vf version.FullVersion, force bool) {
 
-	managerPath := boxPath + "/" + boxManagerFile
+	managerPath := boxPath + boxManagerFile
 
 	_, err := os.Stat(managerPath)
 
@@ -62,7 +64,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 			})
 
 			if err != nil {
-				panic(fmt.Sprintf("create box.go %v", err))
+				panic(fmt.Sprintf("error creating %v %v", managerPath, err))
 			}
 
 		}
