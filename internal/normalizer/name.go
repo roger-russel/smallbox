@@ -21,19 +21,3 @@ func KeyName(name string, alias string) string {
 func FileName(name string) string {
 	return "boxed_" + slug.Make(name) + ".go"
 }
-
-func BoxPath(prefix, file string) (boxPath string) {
-
-	boxPath = prefix
-
-	switch true {
-	case prefix == "./":
-		boxPath += file
-	case prefix == "/":
-		boxPath += file
-
-		boxPath += "/" + file
-	}
-
-	return boxPath
-}
