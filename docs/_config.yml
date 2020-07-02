@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+title: [Small Box]
+description: [Smallbox is a small golang library to embed assets into golang binaries]
+include:
+  - contributing.md
