@@ -13,7 +13,6 @@ How contribute with this project is very easy.
 
 * [Editorconfig](https://editorconfig.org/), it's for stuffs like change tab to space and etc.
 
-
 ## DEV Designs
 
 * [Solid](https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design), please adapt class to package and let it go;
