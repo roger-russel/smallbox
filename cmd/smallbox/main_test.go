@@ -258,7 +258,7 @@ func Example_mainPath() {
 
 	main()
 	// output:
-	// Boxing: /some/file.txt file
+	// Boxing: /some/file.txt as file
 	// Some thing went wrong: some error
 
 }

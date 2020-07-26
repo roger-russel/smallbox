@@ -257,7 +257,7 @@ func Test_boxFile(t *testing.T) {
 				fileName:  "./file_test.go",
 				aliasName: "file",
 			},
-			want: "there is a dir where it want to create boxed_file: /boxed_file.go",
+			want: "there is a dir where it want to create boxed_file: boxed_file.go",
 			pre: func() {
 				c := 0
 
@@ -408,6 +408,7 @@ func Test_boxFile(t *testing.T) {
 			},
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			defer func() {
@@ -426,6 +427,20 @@ func Test_boxFile(t *testing.T) {
 
 func Example_boxFileFileAlreadyExists() {
 
+	defer monkey.UnpatchAll()
+
+	gopath := os.Getenv("GOPATH")
+
+	fakeStat, err := os.Stat(gopath + "/github.com/roger-russel/smallbox/README.md")
+
+	if err != nil {
+		panic(err)
+	}
+
+	monkey.Patch(os.Stat, func(name string) (os.FileInfo, error) {
+		return fakeStat, nil
+	})
+
 	boxFile(
 		version.FullVersion{},
 		false,
@@ -433,6 +448,6 @@ func Example_boxFileFileAlreadyExists() {
 		"file",
 	)
 	// output:
-	// Boxing: ./file_test.go file
-	// There is a file with same name: "/boxed_file.go", to force overwrite add flag --force on command run.
+	// Boxing: ./file_test.go as file
+	// There is a file with same name: "boxed_file.go", to force overwrite add flag --force on command run.
 }

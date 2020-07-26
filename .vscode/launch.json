@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/cmd/smallbox",
             "cwd": "${workspaceFolder}",
             "env": {},
-            "args": ["--force", "-f", "./template/box/box.go.tpl", "-n", "box-test"]
+            "args": []
         }
     ]
 }

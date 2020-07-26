@@ -75,9 +75,11 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 func boxFile(vf version.FullVersion, force bool, fileName string, aliasName string) {
 
 	fmt.Printf("Boxing: %v", fileName)
+
 	if aliasName != "" {
-		fmt.Printf("as %v", aliasName)
+		fmt.Printf(" as %v", aliasName)
 	}
+
 	fmt.Printf("\n")
 
 	stat, err := os.Stat(fileName)
