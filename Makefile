@@ -37,5 +37,7 @@ codecov:
 
 .PHONY: release
 release:
+	@git tag -d v0.1
 	@rm -fR dist
+	@git tag v0.1
 	@goreleaser release
