@@ -1,5 +1,5 @@
-{{ define "box" }}
-/*Package box {{ .Version }}*/
+
+/*Package box {Version: Commit: Date:}*/
 package box
 
 import (
@@ -13,6 +13,13 @@ type Box struct {
 }
 
 var box map[string]string
+
+//initializeBox check and Initialize files on it
+func initializeBox() {
+	if box == nil {
+		box = make(map[string]string, 0)
+	}
+}
 
 //Len of items on Box
 func Len() int {
@@ -40,4 +47,3 @@ func List() (list []string) {
 
 	return list
 }
-{{ end }}

@@ -48,7 +48,10 @@ func Root(vf v.FullVersion) {
 		"Force will make smallbox rewrite all files again: --force",
 	)
 
-	rootCmd.Execute()
+	err := rootCmd.Execute()
+	if err != nil {
+		panic(err)
+	}
 
 }
 

@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"reflect"
 	"testing"
 
 	"bou.ke/monkey"
@@ -47,14 +48,41 @@ func TestStdout(t *testing.T) {
 		fmt.Print(want)
 	})
 
-	t.Run("something went wrong when tried to free stdout", func(t *testing.T) {
+}
+
+func TestStdoutFree(t *testing.T) {
+
+	stdOut = os.Stdout
+
+	t.Run("free sucessifully", func(t *testing.T) {
+		defer monkey.UnpatchAll()
+
+		want := "free"
+
+		monkey.PatchInstanceMethod(reflect.TypeOf(stdOutWriter), "Close", func(f *os.File) error {
+			return nil
+		})
+
+		monkey.Patch(ioutil.ReadAll, func(r io.Reader) ([]byte, error) {
+			return []byte(want), nil
+		})
+
+		got := StdoutFree()
+
+		if want != got {
+			t.Errorf("Error expect \"%v\" but got \"%v\"", want, got)
+		}
+
+	})
+
+	t.Run("something went wrong when tried to close stdout", func(t *testing.T) {
+		defer monkey.UnpatchAll()
 
 		want := "something went wrong"
 
-		monkey.Patch(ioutil.ReadAll, func(r io.Reader) ([]byte, error) {
-			return []byte{}, fmt.Errorf(want)
+		monkey.PatchInstanceMethod(reflect.TypeOf(stdOutWriter), "Close", func(f *os.File) error {
+			return fmt.Errorf(want)
 		})
-		defer monkey.UnpatchAll()
 
 		defer func() {
 			if r := recover(); r != nil {
@@ -66,6 +94,33 @@ func TestStdout(t *testing.T) {
 		}()
 
 		StdoutFree()
+
+	})
+
+	t.Run("something went wrong when tried to free stdout", func(t *testing.T) {
+		defer monkey.UnpatchAll()
+
+		want := "something went wrong"
+
+		monkey.PatchInstanceMethod(reflect.TypeOf(stdOutWriter), "Close", func(f *os.File) error {
+			return nil
+		})
+
+		monkey.Patch(ioutil.ReadAll, func(r io.Reader) ([]byte, error) {
+			return []byte{}, fmt.Errorf(want)
+		})
+
+		defer func() {
+			if r := recover(); r != nil {
+				got := fmt.Sprint(r)
+				if want != got {
+					t.Errorf("Error expect \"%v\" but got \"%v\"", want, got)
+				}
+			}
+		}()
+
+		StdoutFree()
+
 	})
 
 }

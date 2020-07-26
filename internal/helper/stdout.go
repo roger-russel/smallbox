@@ -27,7 +27,10 @@ func StdoutCapture() {
 //StdoutFree the captured stdout
 func StdoutFree() string {
 
-	stdOutWriter.Close()
+	if err := stdOutWriter.Close(); err != nil {
+		panic(err)
+	}
+
 	os.Stdout = stdOut
 
 	out, err := ioutil.ReadAll(stdOutReader)
