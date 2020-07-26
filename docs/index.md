@@ -1,6 +1,5 @@
 # Small Box
-
-[![codecov](https://codecov.io/gh/roger-russel/smallbox/branch/master/graph/badge.svg)](https://codecov.io/gh/roger-russel/smallbox) [![Maintainability](https://api.codeclimate.com/v1/badges/9738317709cabed40cc5/maintainability)](https://codeclimate.com/github/roger-russel/smallbox/maintainability) ![download](https://img.shields.io/github/downloads/roger-russel/smallbox/total.svg)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/roger-russel/smallbox/?ref=repository-badge) [![codecov](https://codecov.io/gh/roger-russel/smallbox/branch/master/graph/badge.svg)](https://codecov.io/gh/roger-russel/smallbox) [![Maintainability](https://api.codeclimate.com/v1/badges/9738317709cabed40cc5/maintainability)](https://codeclimate.com/github/roger-russel/smallbox/maintainability) ![download](https://img.shields.io/github/downloads/roger-russel/smallbox/total.svg)
 
 Small Box is a small library to embed static content into Golang Binary.
 
