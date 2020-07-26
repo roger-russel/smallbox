@@ -5,7 +5,7 @@ import "github.com/gosimple/slug"
 //KeyName normalize a name with the requirements to create a key name
 func KeyName(name string, alias string) string {
 
-	switch true {
+	switch {
 	case alias != "":
 		name = alias
 	case name[0:2] == "./":

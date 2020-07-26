@@ -24,7 +24,7 @@ func Handle(cmd *cobra.Command, args []string, flags flags.Flags, vf version.Ful
 	handleBoxFolder()
 	createBoxManagerFile(vf, flags.Force)
 
-	switch true {
+	switch {
 	case flags.File != "":
 		boxFile(vf, flags.Force, flags.File, flags.Name)
 	}
