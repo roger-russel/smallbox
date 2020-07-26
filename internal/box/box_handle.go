@@ -13,11 +13,13 @@ var boxPath string
 //Handle Box Generate Command
 func Handle(cmd *cobra.Command, args []string, flags flags.Flags, vf version.FullVersion) {
 
-	if flags.Path[:len(flags.Path)] == "/" {
+	if flags.Path[len(flags.Path)-1:] == "/" {
 		boxPath = flags.Path
 	} else {
 		boxPath = flags.Path + "/"
 	}
+
+	boxPath += boxFolderName + "/"
 
 	handleBoxFolder()
 	createBoxManagerFile(vf, flags.Force)

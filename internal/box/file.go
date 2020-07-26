@@ -75,7 +75,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 
 	fmt.Printf("Boxing: %v", fileName)
 	if aliasName != "" {
-		fmt.Printf(" %v", aliasName)
+		fmt.Printf("as %v", aliasName)
 	}
 	fmt.Printf("\n")
 
@@ -89,7 +89,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 		panic(fmt.Sprintf("The file name: %v, is a dir but it was expecting a file", fileName))
 	}
 
-	boxedFileName := boxPath + "/" + normalizer.FileName(aliasName)
+	boxedFileName := boxPath + normalizer.FileName(aliasName)
 
 	stat, err = os.Stat(boxedFileName)
 
@@ -101,7 +101,7 @@ func boxFile(vf version.FullVersion, force bool, fileName string, aliasName stri
 		panic(fmt.Sprintf("there is a dir where it want to create boxed_file: %v", boxedFileName))
 	}
 
-	if !force {
+	if stat != nil && !force {
 		fmt.Printf("There is a file with same name: \"%v\", to force overwrite add flag --force on command run.", boxedFileName)
 		return // continue to next if there is one
 	}
