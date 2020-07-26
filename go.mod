@@ -8,5 +8,3 @@ require (
 	github.com/gosimple/slug v1.9.0
 	github.com/spf13/cobra v1.0.0
 )
-
-exclude github.com/roger-russel/smallbox/test/fixtures/crud v0.0.1
