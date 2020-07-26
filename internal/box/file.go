@@ -49,11 +49,12 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 			panic(err)
 		} else {
 			f, err := os.Create(managerPath)
-			defer f.Close()
 
 			if err != nil {
 				panic(err)
 			}
+
+			defer f.Close()
 
 			err = tplBox.ExecuteTemplate(f, "box", struct {
 				Version string
