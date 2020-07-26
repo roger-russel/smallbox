@@ -21,4 +21,5 @@ coverage/
 
 #this box folder may be created if someone run a single test on ide
 cmd/smallbox/box/
+
 .goreleaser.yml
