@@ -35,3 +35,7 @@ codecov:
 	@export CODECOV_TOKEN=${CODECOV_TOKEN_SMALLBOX}
 	@curl -s https://codecov.io/bash > /tmp/codecov.sh && chmod +x /tmp/codecov.sh && bash /tmp/codecov.sh
 
+.PHONY: release
+release:
+	@rm -fR dist
+	@goreleaser release
