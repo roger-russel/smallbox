@@ -7,7 +7,7 @@ import (
 
 func handleBoxFolder() {
 
-	err := os.MkdirAll(boxPath, 0755)
+	err := os.MkdirAll(boxPath, 0740)
 
 	if err != nil {
 		if !os.IsExist(err) { // If the error is not that the directory already exists, like: permission denied
