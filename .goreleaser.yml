@@ -7,7 +7,7 @@ before:
     # you may remove this if you don't need go generate
     - go generate ./...
 builds:
-- id: smallbox-linux-amd64
+- id: smallbox
   binary: smallbox
   main: ./cmd/smallbox/main.go
   goos:
