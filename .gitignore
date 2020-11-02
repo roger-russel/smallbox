@@ -23,3 +23,5 @@ coverage/
 cmd/smallbox/box/
 
 dist
+
+tmp

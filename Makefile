@@ -11,6 +11,7 @@ box-templates:
 	@go run ./cmd/smallbox --force -f ./template/box/box.go.tpl -n box
 	@go run ./cmd/smallbox --force -f ./template/box/boxed.go.tpl -n boxed
 	@go run ./cmd/smallbox --force -f ./template/box/boxed.go.tpl -n boxed
+	@go run ./cmd/smallbox --force -f ./template/box/box_test.go.tpl -n test_tpl
 
 .PHONY: run-crud
 run-crud:

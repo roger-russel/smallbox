@@ -34,13 +34,18 @@ func Root(vf v.FullVersion) {
 	)
 
 	rootCmd.Flags().StringVarP(
+		&flags.Dir, "dir", "d", "",
+		"A folder to be created/updated on box folder eg: -d ./assets",
+	)
+
+	rootCmd.Flags().StringVarP(
 		&flags.Path, "path", "p", "./",
 		"The path to box folder: -p ./autogenerate",
 	)
 
 	rootCmd.Flags().StringVarP(
 		&flags.Name, "name", "n", "",
-		"Use a different name from file to store it content: -n easyname",
+		"Use a different base name as an alias: -n easyname",
 	)
 
 	flags.Force = *rootCmd.Flags().Bool(

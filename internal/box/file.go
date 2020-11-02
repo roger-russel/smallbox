@@ -15,40 +15,46 @@ import (
 
 var tplBox *template.Template
 var tplBoxed *template.Template
+var tplTest *template.Template
 
 func init() {
 	initFile()
 }
 
 func initFile() {
-	content, err := box.Get("box")
+	tplBox = initTemplate("box")
+	tplBoxed = initTemplate("boxed")
+	tplTest = initTemplate("test_tpl")
+}
+
+func initTemplate(name string) *template.Template {
+
+	content, err := box.Get(name)
 
 	if err != nil {
 		panic(err)
 	}
 
-	tplBox = template.Must(template.New("box").Parse(string(content)))
+	return template.Must(template.New(name).Parse(string(content)))
 
-	content, err = box.Get("boxed")
-
-	if err != nil {
-		panic(err)
-	}
-
-	tplBoxed = template.Must(template.New("boxed").Parse(string(content)))
 }
 
 func createBoxManagerFile(vf version.FullVersion, force bool) {
+	createTemplateFile(vf, force, tplBox, "box", boxManagerFile)
+	createTemplateFile(vf, force, tplTest, "test_tpl", boxTestFile)
+}
 
-	managerPath := boxPath + boxManagerFile
+func createTemplateFile(vf version.FullVersion, force bool, tpl *template.Template, tplName string, fileName string) {
 
-	_, err := os.Stat(managerPath)
+	filePath := boxPath + fileName
+
+	_, err := os.Stat(filePath)
 
 	if err != nil || force {
 		if err != nil && !os.IsNotExist(err) {
 			panic(err)
 		} else {
-			f, err := os.Create(managerPath)
+			f, err := os.Create(filePath)
 
 			if err != nil {
 				panic(err)
@@ -56,7 +62,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 
 			defer f.Close()
 
-			err = tplBox.ExecuteTemplate(f, "box", struct {
+			err = tpl.ExecuteTemplate(f, tplName, struct {
 				Version string
 				Date    string
 			}{
@@ -65,7 +71,7 @@ func createBoxManagerFile(vf version.FullVersion, force bool) {
 			})
 
 			if err != nil {
-				panic(fmt.Sprintf("error creating %v %v", managerPath, err))
+				panic(fmt.Sprintf("error creating %v %v", filePath, err))
 			}
 
 		}

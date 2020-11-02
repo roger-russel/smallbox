@@ -180,7 +180,7 @@ func Example_main() {
 	c := 0
 	monkey.Patch(os.Stat, func(path string) (of os.FileInfo, err error) {
 		c++
-		if c == 2 {
+		if c == 3 {
 			return nil, fmt.Errorf("some error")
 		}
 		return nil, nil
@@ -226,7 +226,7 @@ func Example_mainPath() {
 	c := 0
 	monkey.Patch(os.Stat, func(path string) (of os.FileInfo, err error) {
 		c++
-		if c == 2 {
+		if c == 3 {
 			return nil, fmt.Errorf("some error")
 		}
 		return nil, nil
