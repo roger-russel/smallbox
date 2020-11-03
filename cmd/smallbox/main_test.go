@@ -300,7 +300,7 @@ func Example_mainDir() {
 		os.Args[0],
 		"-d",
 		"./foo",
-		"-p", "/",
+		"-p", "/tmp",
 		"-n", "boo",
 	}
 
