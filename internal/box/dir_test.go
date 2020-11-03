@@ -116,20 +116,20 @@ func Test_boxDir(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			{
-				defer monkey.UnpatchAll()
 
-				defer func() {
-					if r := recover(); r != nil {
-						if (fmt.Sprint(r) != tt.wantData) == tt.want {
-							t.Errorf("Expecting: %v, got: %v", tt.wantData, fmt.Sprint(r))
-						}
+			defer monkey.UnpatchAll()
+
+			defer func() {
+				if r := recover(); r != nil {
+					if (fmt.Sprint(r) != tt.wantData) == tt.want {
+						t.Errorf("Expecting: %v, got: %v", tt.wantData, fmt.Sprint(r))
 					}
-				}()
+				}
+			}()
 
-				tt.run(t)
-				boxDir(tt.args.vf, tt.args.force, tt.args.dirName, tt.args.aliasBaseName)
-			}
+			tt.run(t)
+			boxDir(tt.args.vf, tt.args.force, tt.args.dirName, tt.args.aliasBaseName)
+
 		})
 	}
 }
