@@ -431,7 +431,7 @@ func Example_boxFileFileAlreadyExists() {
 
 	gopath := os.Getenv("GOPATH")
 
-	fakeStat, err := os.Stat(gopath + "/github.com/roger-russel/smallbox/README.md")
+	fakeStat, err := os.Stat(gopath + "/src/github.com/roger-russel/smallbox/README.md")
 
 	if err != nil {
 		panic(err)

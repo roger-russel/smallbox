@@ -180,7 +180,7 @@ func Example_main() {
 	c := 0
 	monkey.Patch(os.Stat, func(path string) (of os.FileInfo, err error) {
 		c++
-		if c == 2 {
+		if c == 3 {
 			return nil, fmt.Errorf("some error")
 		}
 		return nil, nil
@@ -226,7 +226,7 @@ func Example_mainPath() {
 	c := 0
 	monkey.Patch(os.Stat, func(path string) (of os.FileInfo, err error) {
 		c++
-		if c == 2 {
+		if c == 3 {
 			return nil, fmt.Errorf("some error")
 		}
 		return nil, nil
@@ -259,6 +259,53 @@ func Example_mainPath() {
 	main()
 	// output:
 	// Boxing: /some/file.txt as file
+	// Some thing went wrong: some error
+
+}
+
+func Example_mainDir() {
+
+	defer monkey.UnpatchAll()
+
+	monkey.Patch(os.MkdirAll, func(path string, perm os.FileMode) (err error) {
+		return nil
+	})
+
+	c := 0
+	monkey.Patch(os.Stat, func(path string) (of os.FileInfo, err error) {
+		c++
+		if c == 3 {
+			return nil, fmt.Errorf("some error")
+		}
+		return nil, nil
+	})
+
+	monkey.Patch(os.Create, func(path string) (*os.File, error) {
+		return nil, nil
+	})
+
+	f := &os.File{}
+
+	monkey.PatchInstanceMethod(reflect.TypeOf(f), "Close", func(f *os.File) error {
+		return nil
+	})
+
+	var tpl *template.Template
+
+	monkey.PatchInstanceMethod(reflect.TypeOf(tpl), "ExecuteTemplate", func(a *template.Template, b io.Writer, c string, d interface{}) error {
+		return nil
+	})
+
+	os.Args = []string{
+		os.Args[0],
+		"-d",
+		"./foo",
+		"-p", "/tmp",
+		"-n", "boo",
+	}
+
+	main()
+	// output:
 	// Some thing went wrong: some error
 
 }

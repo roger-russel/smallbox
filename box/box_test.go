@@ -9,6 +9,12 @@ import (
 )
 
 func TestLen(t *testing.T) {
+
+	box = make(map[string]string)
+	box["a"] = "1"
+	box["b"] = "2"
+	box["c"] = "3"
+
 	tests := []struct {
 		name         string
 		want         bool
@@ -17,7 +23,7 @@ func TestLen(t *testing.T) {
 		{
 			name:         "simple",
 			want:         true,
-			wantResponse: 2,
+			wantResponse: 3,
 		},
 		{
 			name:         "different",
@@ -36,6 +42,12 @@ func TestLen(t *testing.T) {
 }
 
 func TestList(t *testing.T) {
+
+	box = make(map[string]string)
+	box["a"] = "1"
+	box["b"] = "2"
+	box["c"] = "3"
+
 	tests := []struct {
 		name     string
 		want     bool
@@ -45,15 +57,16 @@ func TestList(t *testing.T) {
 			name: "equals",
 			want: true,
 			wantList: []string{
-				"box",
-				"boxed",
+				"a",
+				"b",
+				"c",
 			},
 		},
 		{
 			name: "different",
 			want: false,
 			wantList: []string{
-				"box",
+				"z",
 			},
 		},
 	}

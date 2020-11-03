@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/cmd/smallbox",
             "cwd": "${workspaceFolder}",
             "env": {},
-            "args": []
+            "args": ["-d", "test/_fixtures/dir/assets", "-p", "tmp", "-n", "tmp", "--force"]
         }
     ]
 }
